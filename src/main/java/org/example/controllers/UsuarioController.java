@@ -1,8 +1,8 @@
 package org.example.controllers;
 
-import jakarta.validation.constraints.NotNull;
 import org.example.dtos.CadastroUsuarioDTO;
-import org.example.entities.Usuario;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/usuario")
 public class UsuarioController {
 
-    @PostMapping("/cadastro")
-    public ResponseEntity<CadastroUsuarioDTO> cadastrarUsuario(@RequestBody CadastroUsuarioDTO usuario) {
-        return ResponseEntity.ok(usuario);
+
+    @PostMapping(value = "/cadastro", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<CadastroUsuarioDTO> cadastrarUsuario(@RequestBody CadastroUsuarioDTO dto) {
+
+        return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
 }
+
